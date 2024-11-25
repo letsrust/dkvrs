@@ -1,8 +1,42 @@
 [package]
-name = "template"
+name = "dkvrs"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[bin]]
+name = "dkvrs"
+path = "src/main.rs"
+
+[[bin]]
+name = "dkvrs-client"
+path = "src/client.rs"
+
 [dependencies]
+anyhow = "1.0.93"
+clap = { version = "4.5.21", features = ["derive"] }
+prost = "0.13.3"
+prost-types = "0.13.3"
+thiserror = "2.0.3"
+
+tokio = { version = "1.41", features = [
+    "rt",
+    "rt-multi-thread",
+    "macros",
+    "net",
+    "fs",
+    "io-util",
+    "io-std",
+    "sync",
+    "time",
+    "tracing",
+] }
+tonic = { version = "0.12.3", features = ["tls", "zstd"] }
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+
+[build-dependencies]
+anyhow = "1.0.93"
+prost-build = "0.13.3"
+tonic-build = "0.12.3"
